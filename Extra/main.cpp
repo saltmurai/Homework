@@ -66,7 +66,7 @@ void inputStudentData(int N, Student *A)
 int main()
 {
     int N;
-    Student studentArray[100];
+    Student studentArray[10];
     cout << "Enter number of student: ";
     cin >> N;
     inputStudentData(N, studentArray);
