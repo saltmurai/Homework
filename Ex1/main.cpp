@@ -12,8 +12,8 @@ public:
     DT();
     DT(int n1);
     DT(const DT &d2); //ham tao sao chep;
-    ~DT();  
-    int getN(){return n;}
+    ~DT();
+    int getN() { return n; }
     friend ostream &operator<<(ostream &os, const DT &d);
     friend istream &operator>>(istream &is, DT &d);
     DT &operator-()
@@ -44,32 +44,14 @@ DT::DT()
 {
     this->a = NULL;
     this->n = 0;
-    // cout << "Su dung ham tao khong doi" << endl;
-    // cout << "Ham bac: ";
-    // cin >> n;
-    // a = new double[n + 1];
-    // cout << "Nhap he so cho: " << endl;
-    // for (int i = 0; i <= n; i++)
-    // {
-    //     cout << "a[" << i << "] = ";
-    //     cin >> a[i];
-    // }
+    cout << "Su dung ham tao khong doi" << endl;
 }
 
 DT::DT(int n1)
 {
     this->n = n1;
     this->a = new double[n1 + 1];
-    // n = n1;
-    // cout << "Su dung ham tao mot doi" << endl;
-    // cout << "Ham bac: " << n;
-    // a = new double[n + 1];
-    // cout << "Nhap he so cho: " << endl;
-    // for (int i = 0; i <= n; i++)
-    // {
-    //     cout << "a[" << i << "] = ";
-    //     cin >> a[i];
-    // }
+    cout << "Su dung ham tao mot doi da thuc bac:" << n1 << endl;
 }
 
 DT::~DT()
@@ -195,25 +177,22 @@ double *DT::multiply(DT &d2)
     return mul;
 }
 
-DT::DT(const DT &d2) 
+DT::DT(const DT &d2)
 {
-    if (n != d2.n)
+    cout << "goi ham tao sao chep" << endl;
+    this->n = d2.n;
+    this->a = new double[d2.n + 1];
+    for (int i = 0; i <= d2.n; ++i)
     {
-        delete[] a;
-        n = d2.n;
-        a = new double[n + 1];
-    }
-    for (int i = 0; i <= n; i++)
-    {
-        a[i] = d2.a[i];
+        this->a[i] = d2.a[i];
     }
 }
 
-double F(DT &f, double x) 
+double F(DT &f, double x)
 {
     double F = 0;
     int size = f.getN();
-    for (int i = 0; i <= size; i++) 
+    for (int i = 0; i <= size; i++)
     {
         F += f[i] * pow(x, i);
     }
