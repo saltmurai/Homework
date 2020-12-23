@@ -223,13 +223,11 @@ public:
     {
         this->firstStud = 0;
     }
-    //them hoc sinh vao list
     void add_stud(student &stud)
     {
         stud.next = firstStud;
         this->firstStud = &stud;
     }
-    //Tim kiem hoc sinh theo ten
     student *lofstuds_Search(string name)
     {
         student *node = this->firstStud;
@@ -242,7 +240,6 @@ public:
         }
         return NULL;
     }
-    //xoa hoc sinh
     void remove(student *stud)
     {
         student *node = this->firstStud;
@@ -261,7 +258,6 @@ public:
             delete node;
         }
     }
-    //Chinh xua thong tin sinh vien
     void set_Student(student &stud)
     {
         int id, studID;
