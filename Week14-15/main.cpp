@@ -154,7 +154,6 @@ public:
         person::display();
     }
     int get_stdid() {return stuid;}
-    //~student();
 };
 
 class listofstudent

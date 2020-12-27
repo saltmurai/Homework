@@ -8,8 +8,8 @@ class Complex
     T real, imag;
 
 public:
-    T getReal() { return T; }
-    T getImag() { return T; }
+    T getReal() { return real; }
+    T getImag() { return imag; }
     Complex<T>(T r = 0, T i = 0) : real(r), imag(i) {}
     Complex<T> operator+(const Complex<T> &b) const
     {
@@ -30,43 +30,53 @@ public:
     {
         int x = (((this->real) * (b.real)) + ((this->imag) * (b.imag))) / (pow(b.real, 2) + pow(b.imag, 2));
         int y = (((this->real) * (this->imag)) - ((this->real) * (b.imag))) / (pow(b.real, 2) + pow(b.imag, 2));
-        Complex z(x,y);
+        Complex z(x, y);
         return z;
     }
-    Complex<T> &operator+=(const Complex<T> &b) 
+    Complex<T> &operator+=(const Complex<T> &b)
     {
         this->real += b.real;
         this->imag += b.imag;
         return *this;
     }
-    Complex<T> &operator-=(const Complex<T> &b) 
+    Complex<T> &operator-=(const Complex<T> &b)
     {
         this->real -= b.real;
         this->imag -= b.imag;
         return *this;
     }
-    template<typename U>
-    friend ostream &operator<<(ostream &os, const Complex<U> &z);
+    template <typename U>
+    friend ostream &operator<<(ostream &os, const Complex<U> &z)
+    {
+        if (z.imag >= 0)
+            os << z.real << " + " << z.imag << "i";
+        else
+        {
+            os << z.real << " - " << z.imag << "i";
+        }
+        return os;
+    }
 };
 
-ostream &operator<<(ostream &os, const Complex<U> &z)
-{
-    if (z.imag >= 0)
-        os << z.real << " + " << z.imag << "i";
-    else
-    {
-        os << z.real << " - " << z.imag << "i";
-    }
-    return os;
-}
+// ostream &operator<<(ostream &os, const Complex<U> &z)
+// {
+//     if (z.imag >= 0)
+//         os << z.real << " + " << z.imag << "i";
+//     else
+//     {
+//         os << z.real << " - " << z.imag << "i";
+//     }
+//     return os;
+// }      
 
 int main()
 {
     cout << "Tao cac so phuc B(4, 5), C(6, 7), D(8, 9), E(-3, 5) " << endl;
-    Complex A, B(4, 5), C(6, 7), D(8, 9), E(-3, 5);
+    Complex<double> A; 
+    Complex<int> B(4, 5), C(6, 7), D(8, 9), E(-3, 5);
     B += C;
     cout << "B += C; B = " << B << endl;
-    cout << "A =  B*C + (D-E)" << endl;
-    A =  B*C + (D-E);
+        cout << "A =  B*C + (D-E)" << endl;
+    A = B * C + (D - E);
     cout << "A = " << A;
 }
