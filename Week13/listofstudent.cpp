@@ -296,6 +296,10 @@ public:
     }
 };
 
+void Printout(person *p) {
+    p->display();
+}
+
 int main()
 {
     // person per1(01, "nguyen van a", "male");
@@ -315,7 +319,7 @@ int main()
     // lofpers.lofpers_Display(&lofpers);
     student std1(1, "le thi mai", "female", NULL, 22, "ET4");
     student std2(2, "le thi hoa", "female", NULL, 23, "ET4");
-    student std3(3, "Pham thanh long", "male", NULL, 24, "ET4");
+    student std3(3, "Pham Quang Sang", "male", NULL, 24, "ET4");
     listOfStudent lofstuds;
     lofstuds.lofStuds_Init();
     lofstuds.add_stud(std1);
@@ -331,5 +335,6 @@ int main()
     cout << "Noi dung cua lisofstuds sau lenh xoa: " << endl;
     lofstuds.remove(&std2); // xoa hoc sinh co ten la le thi hoa
     lofstuds.lofstuds_display();
+    
     return 0;
 }

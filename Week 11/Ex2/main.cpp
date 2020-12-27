@@ -2,52 +2,54 @@
 #include <cmath>
 using namespace std;
 
+template <typename T>
 class Complex
 {
-    int real, imag;
+    T real, imag;
 
 public:
-    int getReal() { return real; }
-    int getImag() { return imag; }
-    Complex(int r = 0, int i = 0) : real(r), imag(i) {}
-    Complex operator+(const Complex &b) const
+    T getReal() { return T; }
+    T getImag() { return T; }
+    Complex<T>(T r = 0, T i = 0) : real(r), imag(i) {}
+    Complex<T> operator+(const Complex<T> &b) const
     {
         Complex z(real + b.real, imag + b.imag);
         return z;
     }
-    Complex operator-(const Complex &b) const
+    Complex<T> operator-(const Complex<T> &b) const
     {
         return Complex(real - b.real, imag - b.imag);
     }
     //(a + bi)(c + di) = (ac - bd) + (ad + bc)i
-    Complex operator*(const Complex &b) const
+    Complex<T> operator*(const Complex<T> &b) const
     {
         Complex z(real * b.real - b.imag * imag, real * b.imag + imag * b.real);
         return z;
     }
-    Complex operator/(const Complex &b) const
+    Complex<T> operator/(const Complex<T> &b) const
     {
         int x = (((this->real) * (b.real)) + ((this->imag) * (b.imag))) / (pow(b.real, 2) + pow(b.imag, 2));
         int y = (((this->real) * (this->imag)) - ((this->real) * (b.imag))) / (pow(b.real, 2) + pow(b.imag, 2));
         Complex z(x,y);
         return z;
     }
-    Complex &operator+=(const Complex &b) 
+    Complex<T> &operator+=(const Complex<T> &b) 
     {
         this->real += b.real;
         this->imag += b.imag;
         return *this;
     }
-    Complex &operator-=(const Complex &b) 
+    Complex<T> &operator-=(const Complex<T> &b) 
     {
         this->real -= b.real;
         this->imag -= b.imag;
         return *this;
     }
-    friend ostream &operator<<(ostream &os, const Complex &z);
+    template<typename U>
+    friend ostream &operator<<(ostream &os, const Complex<U> &z);
 };
 
-ostream &operator<<(ostream &os, const Complex &z)
+ostream &operator<<(ostream &os, const Complex<U> &z)
 {
     if (z.imag >= 0)
         os << z.real << " + " << z.imag << "i";
